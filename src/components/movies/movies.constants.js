@@ -1,0 +1,8 @@
+const moviesConstants = {
+    LOAD_MOVIES_START: 'LOAD_MOVIES_START',
+    LOAD_MOVIES_SUCCESS: 'LOAD_MOVIES_SUCCESS',
+    LOAD_MOVIES_FAILED: 'LOAD_MOVIES_FAILED',
+    ADD_NEW_MOVIE: 'ADD_NEW_MOVIE'
+};
+
+export default moviesConstants;
