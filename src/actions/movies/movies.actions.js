@@ -3,7 +3,9 @@ import moviesConstants from '../../components/movies/movies.constants';
 const { LOAD_MOVIES_START,
         LOAD_MOVIES_SUCCESS,
         LOAD_MOVIES_FAILED,
-        ADD_NEW_MOVIE } = moviesConstants;
+        ADD_NEW_MOVIE,
+        REMOVE_MOVIE,
+        UPDATE_MOVIE } = moviesConstants;
 
 const loadMovies = () => {
     return {
@@ -32,9 +34,25 @@ const addNewMovie = (movie) => {
     }
 };
 
+const removeMovie = (movieId) => {
+    return {
+        type: REMOVE_MOVIE,
+        payload: movieId
+    }
+};
+
+const updateMovie = (movie) => {
+    return {
+        type: UPDATE_MOVIE,
+        payload: movie
+    }
+};
+
 export {
     loadMovies,
     loadMoviesSuccess,
     loadMoviesFailed,
-    addNewMovie
+    addNewMovie,
+    removeMovie,
+    updateMovie
 };

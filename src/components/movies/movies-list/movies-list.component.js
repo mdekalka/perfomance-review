@@ -1,19 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router'
+import classNames from 'classnames';
 
-const MoviesList = ({ header, movies }) => {
+import './movies-list.component.css';
+
+const MoviesList = ({ header, movie, movies, onLoad, onRemove }) => {
     const renderMovies = (movies) => {
         if (movies && movies.length) {
-            const renderMovies = movies.map((movie) => {
+            const renderMovies = movies.map((currentMovie) => {
+                const linkClass = classNames({
+                    'list-group-item': true,
+                    'active': movie._id === currentMovie._id
+                });
+
                 return (
-                    <div className="list-group-item" key={movie._id}>
-                        <Link to={'/movies/movie/' + movie.id}>{movie.title}</Link>
-                    </div>
+                    <li key={currentMovie._id}>
+                        <a className={linkClass} onClick={() => {onLoad(currentMovie._id)}}>
+                            {currentMovie.title}
+                        </a>
+                        <button type="button" className="btn btn-danger" onClick={() => {
+                            onRemove(currentMovie._id)
+                        }}>Remove</button>
+                    </li>
                 )
             });
 
             return (
-                <ul className="list-group movies-container">
+                <ul className="list-group movies-list">
                     {renderMovies}
                 </ul>
             )

@@ -39,16 +39,19 @@ router.route('/movies/:id').put(function(req, res) {
             return req.send(err);
         }
 
-        for (const prop in req.body) {
-            movie[prop] = req.body[props];
+        for (const prop in req.body.movie) {
+            movie[prop] = req.body.movie[prop];
         }
 
-        movie.save(function(err) {
+        movie.save(function(err, movie) {
             if (err) {
                 return res.send(err);
             }
 
-            req.send({message: 'Movie updated'});
+            res.send({
+                movie: movie,
+                message: 'Movie updated'
+            });
         });
     })
 });
@@ -67,14 +70,19 @@ router.route('/movies/:id').get(function(req, res) {
 });
 
 router.route('/movies/:id').delete(function(req, res) {
+    const id = req.params.id;
+
     Movie.remove({
-        _id: req.params.id
-    }, function(err, movie) {
+        _id: id
+    }, function(err, info) {
         if (err) {
             return req.send(err);
         }
 
-        res.json({message: 'Successfully deleted'});
+        res.json({
+            id: id,
+            message: 'Successfully deleted'
+        });
     });
 });
 

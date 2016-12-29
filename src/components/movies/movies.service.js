@@ -17,6 +17,36 @@ const moviesService = {
         });
     },
 
+    getMovieById(id) {
+        const url = `${this.config.routes.movies}/${id}`;
+
+        return axios.get(url).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
+    updateMovieById(id, updateMovie) {
+        const url = `${this.config.routes.movies}/${id}`;
+
+        return axios.put(url, { movie: updateMovie}).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
+    removeMovieById(id) {
+        const url = `${this.config.routes.movies}/${id}`;
+
+        return axios.delete(url).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
     addNewMovie(movie) {
         const url = this.config.routes.movies;
 
