@@ -5,12 +5,14 @@ import store from '../configs/configStore';
 
 import App from '../App';
 import MoviesContainer from '../components/movies/movies.container';
+import Users from '../components/users/users.container';
 
+// <IndexRoute component={MoviesContainer} />
 const routes = (
     <Provider store={store} >
         <Router history={browserHistory}>
             <Route path="/" component={App} >
-                <IndexRoute component={MoviesContainer} />
+                <IndexRoute component={Users} />
             </Route>
         </Router>
     </Provider>

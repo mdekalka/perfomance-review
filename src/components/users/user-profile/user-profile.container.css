@@ -1,0 +1,68 @@
+.user-profile-container {
+    height: 146px;
+    padding: 20px;
+    background-color: #17202A;
+    cursor: pointer;
+    transition: background-color .4s ease;
+}
+
+.user-profile-container:hover {
+    background-color: #0E141A;
+}
+
+.user-profile-container .user-image-profile {
+    float: left;
+}
+
+.user-profile-container .user-info-profile {
+    text-align: left;
+}
+
+.user-info-profile .user-name {
+    color: #D4AC0D;
+    font-size: 17px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.user-info-profile .user-info {
+    font-size: 13px;
+    color: #AEB6BF;
+}
+.user-info-profile .user-mail {
+    font-size: 13px;
+    color: #dbe4e6;
+}
+
+.user-info-profile .user-mail:hover {
+    color: #fff;
+}
+
+.user-info-profile .user-status {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    width: 6px;
+    height: 6px;
+    background-color: #AEB6BF;
+    border-radius: 50%;
+}
+
+.user-info-profile .user-status.not-active {
+    background-color: #D91E18;
+}
+
+.user-info-profile .user-status.in-progress {
+    background-color: #2ECC71;
+}
+
+.user-info-profile .user-status.complete {
+    background-color: #D4AC0D;
+}
+
+.user-image-profile .user-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 25px;
+    border-radius: 50%;
+}

@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 
 const indexRoute = require('./routes/indexRoute');
 const moviesRoute = require('./routes/movies/moviesRoutes');
+const usersRoute = require('./routes/users/usersRoutes');
 
 // DB config
 var dbName = 'nodeTest';
@@ -35,8 +36,8 @@ app.set('view engine', 'jade');
 
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 // Server static data
 app.use(express.static(path.join(__dirname, '../public')));
@@ -52,6 +53,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRoute);
 app.use('/api', moviesRoute);
+app.use('/usersApi', usersRoute);
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {

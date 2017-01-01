@@ -1,0 +1,10 @@
+const usersConstants = {
+    LOAD_USERS_START: 'LOAD_USERS_START',
+    LOAD_USERS_SUCCESS: 'LOAD_USERS_SUCCESS',
+    LOAD_USERS_FAILED: 'LOAD_USERS_FAILED',
+    ADD_NEW_USER: 'ADD_NEW_USER',
+    REMOVE_USER: 'REMOVE_USER',
+    UPDATE_USER: 'UPDATE_USER'
+};
+
+export default usersConstants; 
