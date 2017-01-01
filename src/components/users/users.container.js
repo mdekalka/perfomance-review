@@ -70,13 +70,13 @@ class Users extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="tool-panel">
-                        <CreateUserProfile 
-                            onUserAdd={this.addUser}>
-                        </CreateUserProfile>
-                        <LoadUsers></LoadUsers>
-                    </div>
-                    <div className="row">
+                    <div className="col-md-12">
+                        <div className="tool-panel">
+                            <CreateUserProfile 
+                                onUserAdd={this.addUser}>
+                            </CreateUserProfile>
+                            <LoadUsers></LoadUsers>
+                        </div>
                         {this.renderUsers(this.props.users)}
                     </div>
                 </div>
