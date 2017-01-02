@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import './user-extend-profile.container.css';
+import usersConstants from '../users.constants';
 import UserState from '../user-state/user-state.container';
+
+const statusMapping = usersConstants.STATUS_MAPPING;
 
 class UserProfileInfo extends Component {
     constructor(props) {
@@ -52,7 +55,7 @@ class UserProfileInfo extends Component {
                 </div>
                 <div className="user-text form-group">Status
                     { !isEditMode && <span> {profile.status}</span> }
-                    <UserState updateState={this.updateState} ></UserState>
+                    <UserState states={statusMapping} updateState={this.updateState} ></UserState>
                 </div>
                 <div className="user-text form-group">E-mail:
                     { !isEditMode && <span> {profile.mail}</span> }
