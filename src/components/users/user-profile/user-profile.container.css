@@ -38,28 +38,6 @@
     color: #fff;
 }
 
-.user-info-profile .user-status {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
-    width: 6px;
-    height: 6px;
-    background-color: #AEB6BF;
-    border-radius: 50%;
-}
-
-.user-info-profile .user-status.not-active {
-    background-color: #D91E18;
-}
-
-.user-info-profile .user-status.in-progress {
-    background-color: #2ECC71;
-}
-
-.user-info-profile .user-status.complete {
-    background-color: #D4AC0D;
-}
-
 .user-image-profile .user-image {
     width: 100px;
     height: 100px;

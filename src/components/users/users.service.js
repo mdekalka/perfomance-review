@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-'use strict';
-
 const userConfig = {
     routes: {
         users: 'http://localhost:9000/usersApi/users'
@@ -36,7 +34,7 @@ const userService = {
             title: 'Front-end developer',
             department: 'D10',
             room: '105',
-            status: 'not-active',
+            status: 'not_active',
             mail: 'youknownothing@gmail.com',
             image: 'https://pp.vk.me/c322825/v322825456/6efe/emn1txC-4yM.jpg'
         },
@@ -66,6 +64,16 @@ const userService = {
         return this.users;
     },
 
+    getUserById(userId) {
+        const url = `${userConfig.routes.users}/${userId}`;
+
+        return axios.get(url).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
     getAllUsers() {
         const url = userConfig.routes.users;
 
@@ -76,10 +84,40 @@ const userService = {
         });
     },
 
+    addMultipleUsers(users) {
+        const url = `${userConfig.routes.users}/add`;
+
+        return axios.post(url, { users: users }).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
     addNewUser(user) {
         const url = userConfig.routes.users;
 
         return axios.post(url, { user: user }).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
+    removeUserById(userId) {
+        const url = `${userConfig.routes.users}/${userId}`;
+
+        return axios.delete(url).then(response => {
+            return response.data;
+        }).catch(error => {
+            throw new Error(error);
+        });
+    },
+
+    updateUserById(userId, user) {
+        const url = `${userConfig.routes.users}/${userId}`;
+
+        return axios.put(url, { user: user }).then(response => {
             return response.data;
         }).catch(error => {
             throw new Error(error);

@@ -42,13 +42,23 @@ class Users extends Component {
         });
     }
 
+    defineUsers = () => {
+        const users = userService.getDefinedUsers();
+
+        userService.addMultipleUsers(users).then(users => {
+            this.addNewUser(users);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     addUser = (user) => {
         _.assign(user, { status: 'not_active' });
 
         this.loadUsers();
-
         userService.addNewUser(user).then(user => {
-            this.addNewUser(user);
+            this.addNewUser([user]);
         })
         .catch(error => {
             console.log(error);
@@ -75,7 +85,7 @@ class Users extends Component {
                             <CreateUserProfile 
                                 onUserAdd={this.addUser}>
                             </CreateUserProfile>
-                            <LoadUsers></LoadUsers>
+                            <LoadUsers defineUsers={this.defineUsers}></LoadUsers>
                         </div>
                         {this.renderUsers(this.props.users)}
                     </div>

@@ -31,3 +31,28 @@ a:active {
     background-color: #0E141A;
     color: #fff;
 }
+
+.button-alert {
+    color: #fff;
+    background-color: #D64541;
+}
+.button-alert:hover {
+    background-color: #a72724;
+}
+
+.button-apply {
+    color: #fff;
+    background-color: #2da560;
+}
+
+.button-apply:hover {
+    background-color: #248e51;
+}
+
+.button-groups .button {
+    margin-right: 10px;
+}
+
+.button-groups .button:last-child {
+    margin-right: 0;
+}

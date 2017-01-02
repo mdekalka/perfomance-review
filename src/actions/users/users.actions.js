@@ -5,7 +5,7 @@ const { LOAD_USERS_START,
         LOAD_USERS_FAILED,
         ADD_NEW_USER,
         REMOVE_USER,
-        UPDATE_USER } = usersConstants;
+        UPDATE_USER } = usersConstants.ACTIONS;
 
 const loadUsers = () => {
     return {

@@ -1,11 +1,12 @@
 import usersConstants from '../../components/users/users.constants';
+import _ from 'lodash';
 
 const { LOAD_USERS_START,
         LOAD_USERS_SUCCESS,
         LOAD_USERS_FAILED,
         ADD_NEW_USER,
         REMOVE_USER,
-        UPDATE_USER } = usersConstants;
+        UPDATE_USER } = usersConstants.ACTIONS;
 
 const initialState = {
     users: [],
@@ -26,7 +27,8 @@ const usersReducer = (state = initialState, action) => {
             return {...state, isLoading: false, isFailed: true, errorMessage: action.payload};
 
         case ADD_NEW_USER:
-            return {...state, users: [...state.users, action.payload]};
+        debugger
+            return {...state, users: [...state.users, ...action.payload]};
 
         case REMOVE_USER:
             const updatedUsers = state.users.filter(users => {

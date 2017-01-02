@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 
 class LoadUsers extends Component {
     render() {
+        const { defineUsers } = this.props;
+
         return (
-            <div><button className="button">Create users</button></div>
+            <div><button onClick={() => defineUsers()} className="button">Create users</button></div>
         )
     }
 }
