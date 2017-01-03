@@ -107,3 +107,4 @@ const mapDispatchToProps = (dispatch) => {
 UserExtendProfile = connect(null, mapDispatchToProps)(UserExtendProfile);
 
 export default UserExtendProfile;
+

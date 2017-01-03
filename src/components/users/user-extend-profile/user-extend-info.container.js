@@ -70,7 +70,7 @@ class UserProfileInfo extends Component {
                 </div>
                 <div className="user-text form-group">Status
                     { !isEditMode && <span> {profile.status}</span> }
-                    <UserState currentState={profile.status} states={statusMapping} updateState={this.updateState} ></UserState>
+                    { isEditMode && <UserState currentState={profile.status} states={statusMapping} updateState={this.updateState} ></UserState> }
                 </div>
                 <div className="user-text form-group">E-mail:
                     { !isEditMode && <span> {profile.mail}</span> }

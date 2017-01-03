@@ -46,10 +46,8 @@ class Toastr extends Component {
     validateOptions(options) {
         const optionsCopy  = assign({}, options);
 
-        for (let key in this.types) {
-            if (!this.types[optionsCopy.type]) {
-                optionsCopy.type = this.types.error;
-            }
+        if (!this.types[optionsCopy.type]) {
+            optionsCopy.type = this.types.error;
         }
         
         return optionsCopy
