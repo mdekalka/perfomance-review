@@ -46,13 +46,26 @@ class UserExtendProfile extends Component {
         });
     }
 
-    updateUserById = (user) => {
-        userService.removeUserById(user._id, user).then(user => {
+    updateUserById = (user, callback) => {
+        callback = callback || function() {};
+        const userId = this.state.currentUser._id;
+
+        userService.updateUserById(userId, user).then(user => {
             this.updateUser(user);
+
+            callback();
         })
         .catch(error => {
             console.log(error);
         });
+    }
+
+    updateProperties = (key, propertyValue) => {
+        let currentUser = this.state.currentUser;
+
+        currentUser[key] = propertyValue;
+
+        this.setState({ currentUser: currentUser});
     }
 
     render() {
@@ -62,7 +75,8 @@ class UserExtendProfile extends Component {
                     <UserProfileInfo 
                         profile={this.state.currentUser}
                         updateUser={this.updateUserById}
-                        removeUser={this.removeUserById}>
+                        removeUser={this.removeUserById}
+                        updateProperties={this.updateProperties}>
                     </UserProfileInfo>
                 </div>
             </div>
@@ -74,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         usersAction: bindActionCreators(usersActions, dispatch)
     }
-}
+};
 
 UserExtendProfile = connect(null, mapDispatchToProps)(UserExtendProfile);
 

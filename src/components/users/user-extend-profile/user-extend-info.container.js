@@ -10,29 +10,44 @@ class UserProfileInfo extends Component {
     constructor(props) {
         super(props);
 
+        this.updateProperties = this.props.updateProperties;
+        this.updateUser = this.props.updateUser;
+
         this.state = {
-            isEditMode: true
+            isEditMode: false
         };
     }
 
     onEditToggle = () => {
         const editState = this.state.isEditMode;
         this.setState({ isEditMode: !editState });
-
-        // this.editUser();
     }
 
-    updateState =() => {
-        debugger
+    updateState = (activeState) => {
+        this.updateProperties('status', activeState);
     }
 
-    onUpdateUser = () => {
+    onUpdateUser = (callback) => {
+        callback = callback || function() {};
 
+        const userModel = {
+            name: this.name.value,
+            title: this.title.value,
+            department: this.department.value,
+            room: this.room.value,
+            status: this.props.profile.status,
+            mail: this.mail.value,
+        };
+
+        this.updateUser(userModel, () => {
+            // Request for updating is over - update the state
+            this.setState({ isEditMode: false });
+        });
     }
 
     render() {
         const { isEditMode } = this.state;
-        const { profile, editUser, updateUser, removeUser } = this.props;
+        const { profile, editUser, removeUser } = this.props;
 
         return (
             <div className="user-extend">
@@ -55,7 +70,7 @@ class UserProfileInfo extends Component {
                 </div>
                 <div className="user-text form-group">Status
                     { !isEditMode && <span> {profile.status}</span> }
-                    <UserState states={statusMapping} updateState={this.updateState} ></UserState>
+                    <UserState currentState={profile.status} states={statusMapping} updateState={this.updateState} ></UserState>
                 </div>
                 <div className="user-text form-group">E-mail:
                     { !isEditMode && <span> {profile.mail}</span> }
@@ -63,7 +78,7 @@ class UserProfileInfo extends Component {
                 </div>
                 <div className="button-groups">
                     <button onClick={() => this.onEditToggle()} className="button">Edit user</button>
-                    { isEditMode && <button onClick={() => this.updateUser()} className="button button-apply">Update user</button> }
+                    { isEditMode && <button onClick={() => this.onUpdateUser()} className="button button-apply">Update user</button> }
                     <button onClick={() => removeUser(profile._id)} className="button button-alert">Remove user</button>
                 </div>
             </div>
