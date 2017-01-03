@@ -78,12 +78,13 @@ class CreateUserProfile extends Component {
                         </label>
                     </div>
                     <div className="form-group">
-                        <label className="form-label">Image
-                            <input className="form-item" type="file" onChange={this.onChange} ref={(image) => this.image = image}/>
-                        </label>
-                        {this.state.previewImage && <img className="preview-image" src={this.state.previewImage} alt="preview" />}
+                        <div className="file-upload button">
+                            <span>Upload avatar</span>
+                            <input type="file" className="upload" onChange={this.onChange} ref={(image) => this.image = image} />
+                        </div>
+                        {this.state.previewImage && <div><img className="preview-image" src={this.state.previewImage} alt="preview" /></div>}
                     </div>
-                    <button className="button" type="submit">Add user</button>
+                    <button className="button button-apply" type="submit">Add user</button>
                 </form>
             )
         } else {

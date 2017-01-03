@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 class MovieProfile extends Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class MovieProfile extends Component {
     profileRender(movies) {
         const { movie } = this.props;
 
-        if (_.isEmpty(movie)) {
+        if (isEmpty(movie)) {
             const { header } = this.props;
 
             return <h3>{header}</h3>;

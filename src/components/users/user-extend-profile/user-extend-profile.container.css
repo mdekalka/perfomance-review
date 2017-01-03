@@ -17,8 +17,13 @@
     border: 2px solid #D4AC0D;
 }
 
+.user-extend .back {
+    margin-bottom: 15px;
+}
+
 .user-text .form-item {
     display: inline-block;
     width: auto;
     margin-left: 15px;
 }
+

@@ -1,12 +1,14 @@
+const keyMirror = require('keymirror');
+
 const usersConstants = {
-    ACTIONS: {
-        LOAD_USERS_START: 'LOAD_USERS_START',
-        LOAD_USERS_SUCCESS: 'LOAD_USERS_SUCCESS',
-        LOAD_USERS_FAILED: 'LOAD_USERS_FAILED',
-        ADD_NEW_USER: 'ADD_NEW_USER',
-        REMOVE_USER: 'REMOVE_USER',
-        UPDATE_USER: 'UPDATE_USER'
-    },
+    ACTIONS: keyMirror({
+        LOAD_USERS_START: null,
+        LOAD_USERS_SUCCESS: null,
+        LOAD_USERS_FAILED: null,
+        ADD_NEW_USER: null,
+        REMOVE_USER: null,
+        UPDATE_USER: null
+    }),
     STATUS_MAPPING: {
         'not_active': {
             id: 0,

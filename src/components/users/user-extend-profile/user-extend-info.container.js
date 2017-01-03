@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './user-extend-profile.container.css';
 import usersConstants from '../users.constants';
 import UserState from '../user-state/user-state.container';
+import BackButton from '../../common/back.component';
 
 const statusMapping = usersConstants.STATUS_MAPPING;
 
@@ -27,9 +28,7 @@ class UserProfileInfo extends Component {
         this.updateProperties('status', activeState);
     }
 
-    onUpdateUser = (callback) => {
-        callback = callback || function() {};
-
+    onUpdateUser = () => {
         const userModel = {
             name: this.name.value,
             title: this.title.value,
@@ -47,10 +46,11 @@ class UserProfileInfo extends Component {
 
     render() {
         const { isEditMode } = this.state;
-        const { profile, editUser, removeUser } = this.props;
+        const { profile, removeUser } = this.props;
 
         return (
             <div className="user-extend">
+                <BackButton to={'/'}>Back to users</BackButton>
                 <img className="user-image" src={profile.image} alt={profile.name} />
                 <div className="user-text form-group">Name:
                     { !isEditMode && <span> {profile.name}</span> }

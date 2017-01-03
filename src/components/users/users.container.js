@@ -3,12 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+
 import userService from './users.service';
+import toastrService from '../common/toastr/toastr.service';
 import * as usersActions from '../../actions/users/users.actions';
 import UserProfile from './user-profile/user-profile.container';
 import CreateUserProfile from './create-user-profile/create-user-profile.container';
 import LoadUsers from './load-users/load-users.container';
-
 
 class Users extends Component {
     constructor(props) {
@@ -20,10 +21,6 @@ class Users extends Component {
         this.addNewUser = props.usersAction.addNewUser;
         this.removeUser = props.usersAction.removeUser;
         this.updateUser = props.usersAction.updateUser;
-
-        this.state = {
-            users: []
-        };
     }
 
     componentDidMount() {
@@ -47,6 +44,11 @@ class Users extends Component {
 
         userService.addMultipleUsers(users).then(users => {
             this.addNewUser(users);
+
+            toastrService.show({ type: 'success', message: {
+                    header: 'Users were successfully added'
+                }
+            });
         })
         .catch(error => {
             console.log(error);
@@ -58,11 +60,31 @@ class Users extends Component {
 
         this.loadUsers();
         userService.addNewUser(user).then(user => {
+            if (user.errors) {
+                toastrService.show({ type: 'error', message: {
+                        header: user.name,
+                        body: user.message
+                    }
+                });
+
+                return;
+            }
+
             this.addNewUser([user]);
+
+            toastrService.show({ type: 'success', message: {
+                    header: 'User added successfully'
+                }
+            });
         })
         .catch(error => {
             console.log(error);
             this.loadUsersFailed(error);
+
+            toastrService.show({ type: 'error', message: {
+                    header: 'User was not added'
+                }
+            });
         });
     }
 

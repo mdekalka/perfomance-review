@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as usersActions from '../../../actions/users/users.actions';
 import userService from '../../users/users.service';
+import toastrService from '../../common/toastr/toastr.service';
 import UserProfileInfo from './user-extend-info.container';
 
 class UserExtendProfile extends Component {
@@ -39,6 +40,12 @@ class UserExtendProfile extends Component {
     removeUserById = (userId) => {
         userService.removeUserById(userId).then(user => {
             this.removeUser(user.id);
+
+            toastrService.show({ type: 'info', message: {
+                    header: 'User was removed successfully'
+                }
+            });
+
             this.props.router.push('/');
         })
         .catch(error => {
@@ -52,6 +59,13 @@ class UserExtendProfile extends Component {
 
         userService.updateUserById(userId, user).then(user => {
             this.updateUser(user);
+
+            this.setState({ currentUser: user });
+
+            toastrService.show({ type: 'success', message: {
+                    header: 'User updated successfully'
+                }
+            });
 
             callback();
         })

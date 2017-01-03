@@ -27,7 +27,6 @@ const usersReducer = (state = initialState, action) => {
             return {...state, isLoading: false, isFailed: true, errorMessage: action.payload};
 
         case ADD_NEW_USER:
-        debugger
             return {...state, users: [...state.users, ...action.payload]};
 
         case REMOVE_USER:
